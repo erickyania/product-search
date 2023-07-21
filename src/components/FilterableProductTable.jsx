@@ -1,15 +1,25 @@
-import ProductTable from "./components/ProductTable";
-import SearchBar from "./components/SearchBar";
+import { useState } from "react";
+import ProductTable from "./ProductTable";
+import SearchBar from "./SearchBar";
 
 function FilterableProductTable(products) {
+  const [filterText, setFilterText] = useState();
+  const [inStockOnly, setInStockOnly] = useState(false);
   return (
     <div>
-      <SearchBar></SearchBar>
-      <ProductTable products = {products}></ProductTable>
+      <SearchBar
+        filterText={filterText}
+        inStockOnly={inStockOnly}
+        onFilterTextChange={setFilterText}
+        onInStockOnlyChange={setInStockOnly}
+      ></SearchBar>
+      <ProductTable
+        products={products}
+        filterText={filterText}
+        inStockOnly={inStockOnly}
+      ></ProductTable>
     </div>
   );
 }
-
-
 
 export default FilterableProductTable;

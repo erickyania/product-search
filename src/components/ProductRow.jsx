@@ -1,2 +1,14 @@
-const ProductRow = () => {};
+const ProductRow = ({ product }) => {
+  const name = product.stocked ? (
+    product.name
+  ) : (
+    <span style={{ color: "red" }}>{product.name}</span>
+  );
+  return (
+    <tr>
+      <td>{name}</td>
+      <tr>{product.price}</tr>
+    </tr>
+  );
+};
 export default ProductRow;

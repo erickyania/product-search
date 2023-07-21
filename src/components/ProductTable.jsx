@@ -1,36 +1,32 @@
 import ProductRow from "./ProductRow";
 import ProductCategoryRow from "./ProductCategoryRow";
-const ProductTable = ({products}) =>
-{
-    const rows = []
-    let lastCategory = null
+const ProductTable = ({ products,filterText,inStockOnly }) => {
+  const rows = [];
+  let lastCategory = null;
 
-    products.forEach(product => {
-        if (product.category !== lastCategory){
-            rows.push(
-                <ProductCategoryRow category={product.category} key={product.category}></ProductCategoryRow>
-            )
-        }
-        rows.push(
-            <ProductRow product={product} key={product.name}></ProductRow>
-        )
-        lastCategory = product.category
-        
-    });
-    
-    return(
-        <table>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Price</th>
-                </tr>
-            </thead>
-            <tbody>
-                {rows}
-            </tbody>
-        </table>
-    )
+  products.forEach((product) => {
+    if (product.category !== lastCategory) {
+      rows.push(
+        <ProductCategoryRow
+          category={product.category}
+          key={product.category}
+        ></ProductCategoryRow>
+      );
+    }
+    rows.push(<ProductRow product={product} key={product.name}></ProductRow>);
+    lastCategory = product.category;
+  });
 
-}
-export default ProductTable
+  return (
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>{rows}</tbody>
+    </table>
+  );
+};
+export default ProductTable;
